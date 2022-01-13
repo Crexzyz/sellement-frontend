@@ -1,15 +1,6 @@
-<header>
-    <mat-toolbar color="primary">
-        <button mat-icon-button aria-label="Menu icon" (click)="drawer.toggle()">
-          <mat-icon>menu</mat-icon>
-        </button>
-        <span>Sellement</span>
-        <span class="example-spacer"></span>
-    </mat-toolbar>
-</header>
 <main>
     <mat-drawer-container hasBackdrop="false" autosize>
-        <mat-drawer #drawer mode="over">
+        <mat-drawer #drawer mode="push">
             <mat-nav-list>
                 <mat-list-item>
                     Button
@@ -17,12 +8,20 @@
             </mat-nav-list>
         </mat-drawer>
       
+        <header>
+            <mat-toolbar color="primary">
+                <button mat-icon-button aria-label="Menu icon" (click)="drawer.toggle()">
+                  <mat-icon>menu</mat-icon>
+                </button>
+                <span>Sellement</span>
+                <span class="example-spacer"></span>
+            </mat-toolbar>
+        </header>
         <div id="content">
             <app-login></app-login>
         </div>
-      
+        <footer>
+            <mat-toolbar color="primary"></mat-toolbar>
+        </footer>
     </mat-drawer-container>
 </main>
-<footer>
-    <mat-toolbar color="primary"></mat-toolbar>
-</footer>
