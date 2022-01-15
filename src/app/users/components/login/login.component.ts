@@ -10,7 +10,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class LoginComponent implements OnInit {
   hidePassword: boolean = true;
-  logged_in: boolean = this.authService.isAuthenticated();
   loginForm: FormGroup = {} as FormGroup;
   error_message: string = "";
 
@@ -46,14 +45,6 @@ export class LoginComponent implements OnInit {
     if(data.error != undefined) {
       this.snackBar.open(data.error, "Close");
     }
-    else {
-      this.logged_in = this.authService.isAuthenticated();
-    }
-  }
-
-  async logout(): Promise<void> {
-    this.authService.logout();
-    this.logged_in = this.authService.isAuthenticated();
   }
 
   getError(fieldName: string, errorName: string): string {

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http'
 import { firstValueFrom } from 'rxjs';
 import { LocalStorageService } from './local-storage.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,9 @@ export class AuthenticationService {
   private static TOKEN_KEY: string = "access_token";
   private SERVER_ADDRESS: string = "http://localhost:8000";
 
-  constructor(private client: HttpClient, private localStorageService: LocalStorageService) { }
+  constructor(private client: HttpClient,
+              private localStorageService: LocalStorageService,
+              private router: Router) { }
 
   public async login(email: string, password: string): Promise<any> {
     const data = {"email": email, "password": password};
@@ -31,6 +34,7 @@ export class AuthenticationService {
 
     if(!user_data.error && token) {
       this.localStorageService.set(LocalStorageService.TOKEN_KEY, token);
+      this.router.navigate(['/']);
     }
 
     return user_data
@@ -52,6 +56,7 @@ export class AuthenticationService {
     }
 
     this.localStorageService.remove(LocalStorageService.TOKEN_KEY);
+    this.router.navigate(['/login']);
   }
 
   public getToken(): string {

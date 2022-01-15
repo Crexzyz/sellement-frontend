@@ -1,7 +1,6 @@
 // Angular
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpInterceptor } from '@angular/common/http';
 
 // Material
 import { MatCardModule } from '@angular/material/card';
