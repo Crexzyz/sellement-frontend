@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from '../../services/authentication.service'
-import { LocalStorageService } from '../../services/local-storage.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +10,9 @@ import { LocalStorageService } from '../../services/local-storage.service';
 })
 export class LoginComponent implements OnInit {
   hidePassword: boolean = true;
+  logged_in: boolean = this.authService.isAuthenticated();
   loginForm: FormGroup = {} as FormGroup;
+  error_message: string = "";
 
   private ERROR_MESSAGES: {[char: string]: string} = {
     required: "This field is required",
@@ -19,7 +21,7 @@ export class LoginComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
               private authService: AuthenticationService,
-              private localStorageService: LocalStorageService) { }
+              private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
@@ -41,11 +43,17 @@ export class LoginComponent implements OnInit {
       return;
 
     const data = await this.authService.login(email.value, password.value);
-    const token = data["access_token"]
-    if(token == undefined)
-      return
-    
-    this.localStorageService.set("access_token", token)
+    if(data.error != undefined) {
+      this.snackBar.open(data.error, "Close");
+    }
+    else {
+      this.logged_in = this.authService.isAuthenticated();
+    }
+  }
+
+  async logout(): Promise<void> {
+    this.authService.logout();
+    this.logged_in = this.authService.isAuthenticated();
   }
 
   getError(fieldName: string, errorName: string): string {
