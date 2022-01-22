@@ -18,6 +18,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { AppRoutingModule } from './app-routing.module';
+import { ProductsModule } from './products/products.module';
+import { HomeModule } from './home/home.module';
 
 @NgModule({
   declarations: [
@@ -34,6 +36,8 @@ import { AppRoutingModule } from './app-routing.module';
     }),
     HttpClientModule,
     UsersModule,
+    HomeModule,
+    ProductsModule,
     MatButtonModule,
     MatIconModule,
     MatToolbarModule,
