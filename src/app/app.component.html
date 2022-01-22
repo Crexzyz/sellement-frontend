@@ -1,12 +1,15 @@
 <main>
-    <mat-drawer-container hasBackdrop="false" autosize>
-        <mat-drawer #drawer mode="push">
+    <mat-drawer-container autosize>
+        <mat-drawer #drawer (click)="drawer.toggle()" mode="push">
             <mat-nav-list>
                 <mat-list-item>
                     <a routerLink="/">Home</a>
                 </mat-list-item>
                 <mat-list-item>
                     <a routerLink="/login">Login</a>
+                </mat-list-item>
+                <mat-list-item>
+                    <a routerLink="/products">Products</a>
                 </mat-list-item>
             </mat-nav-list>
         </mat-drawer>
