@@ -11,6 +11,7 @@ export class PaginatedContainer<T extends DataModel> {
 		this._count = data.count || 0;
 		this._next = data.next || "";
 		this._prev = data.prev || "";
+		this._results = []
 
 		data.results.forEach((element: any) => {
 			let instance: T = new type();

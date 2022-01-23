@@ -5,9 +5,9 @@ export class Product implements FromData {
 	private _name: string = "";
 	private _description: string = "";
 	private _stock: number = 0;
-	private _purchase_price: number = 0;
-	private _sell_price: number = 0;
-	private _last_modified: Date = new Date();
+	private _purchasePrice: number = 0;
+	private _sellPrice: number = 0;
+	private _lastModified: Date = new Date();
 
 	fromData(data: any): void {
 		this.init(data.id, data.name, data.description, data.stock,
@@ -15,22 +15,22 @@ export class Product implements FromData {
 	}
 
 	constructor(id: number = 0, name: string = "", description: string = "",
-		stock: number = 0, purchase_price: number = 0,
-		sell_price: number = 0, last_modified: string = "") {
-		this.init(id, name, description, stock, purchase_price, sell_price, last_modified)
+		stock: number = 0, purchasePrice: number = 0, sellPrice: number = 0,
+		lastModified: string = "") {
+		this.init(id, name, description, stock, purchasePrice, sellPrice, lastModified)
 	}
 
 	private init(id: number = 0, name: string = "", description: string = "",
-		stock: number = 0, purchase_price: number = 0, sell_price: number = 0,
-		last_modified: string = ""): void {
+		stock: number = 0, purchasePrice: number = 0, sellPrice: number = 0,
+		lastModified: string = ""): void {
 		this._id = id;
 		this._name = name;
 		this._description = description;
 		this._stock = stock;
-		this._purchase_price = purchase_price;
-		this._sell_price = sell_price;
+		this._purchasePrice = purchasePrice;
+		this._sellPrice = sellPrice;
 		// TODO: Change format in Django serializer
-		this._last_modified = new Date(last_modified);
+		this._lastModified = new Date(lastModified);
 	}
 
 	public get id(): number {
@@ -49,16 +49,16 @@ export class Product implements FromData {
 		return this._stock;
 	}
 
-	public get purchase_price(): number {
-		return this._purchase_price;
+	public get purchasePrice(): number {
+		return this._purchasePrice;
 	}
 
-	public get sell_price(): number {
-		return this._sell_price;
+	public get sellPrice(): number {
+		return this._sellPrice;
 	}
 
-	public get last_modified(): Date {
-		return this._last_modified;
+	public get lastModified(): Date {
+		return this._lastModified;
 	}
 
 	public set id(value: number) {
@@ -76,15 +76,15 @@ export class Product implements FromData {
 	public set stock(value: number) {
 		this._stock = value;
 	}
-	public set purchase_price(value: number) {
-		this._purchase_price = value;
+	public set purchasePrice(value: number) {
+		this._purchasePrice = value;
 	}
 
-	public set sell_price(value: number) {
-		this._sell_price = value;
+	public set sellPrice(value: number) {
+		this._sellPrice = value;
 	}
 
-	public set last_modified(value: Date) {
-		this._last_modified = value;
+	public set lastModified(value: Date) {
+		this._lastModified = value;
 	}
 }
