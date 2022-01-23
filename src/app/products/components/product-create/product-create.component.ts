@@ -1,6 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ModelEditor } from 'src/app/core/models/model-editor';
 import { Product } from '../../models/product.model';
 import { ProductsService } from '../../services/products.service';
 
@@ -9,10 +10,12 @@ import { ProductsService } from '../../services/products.service';
   templateUrl: './product-create.component.html',
   styleUrls: ['./product-create.component.scss']
 })
-export class ProductCreateComponent implements OnInit {
+export class ProductCreateComponent extends ModelEditor<Product> {
   productForm: FormGroup = {} as FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private productsService: ProductsService) { }
+  constructor(formBuilder: FormBuilder, service: ProductsService) {
+    super(formBuilder, service);
+  }
 
   ngOnInit(): void {
     this.productForm = this.formBuilder.group({
@@ -43,7 +46,7 @@ export class ProductCreateComponent implements OnInit {
     newProduct.fromJson(productData)
     
     try {
-      await this.productsService.create(newProduct);
+      await this.modelService.create(newProduct);
     } catch (error: any) {
       console.log(error as HttpErrorResponse); 
       return false;
