@@ -1,10 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ProductListComponent } from './components/product-list/product-list.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { RouterModule, Routes } from '@angular/router';
+
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatButtonModule } from '@angular/material/button';
+
 import { ProductCreateComponent } from './components/product-create/product-create.component';
-import { RouterModule, Routes } from '@angular/router';
+import { ProductListComponent } from './components/product-list/product-list.component';
 import { LoginGuard } from '../users/guards/login.guard';
 
 const routes: Routes = [
@@ -24,10 +32,16 @@ const routes: Routes = [
     ProductCreateComponent
   ],
   imports: [
+    RouterModule.forChild(routes),
     CommonModule,
     MatTableModule,
     MatPaginatorModule,
-    RouterModule.forChild(routes)
+    MatFormFieldModule,
+    MatSelectModule,
+    MatInputModule,
+    MatGridListModule,
+    ReactiveFormsModule,
+    MatButtonModule
   ],
   exports: [
     ProductListComponent

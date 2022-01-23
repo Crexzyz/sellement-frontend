@@ -15,7 +15,7 @@ export class PaginatedContainer<T extends DataModel> {
 
 		data.results.forEach((element: any) => {
 			let instance: T = new type();
-			instance.fromData(element);
+			instance.fromJson(element);
 			this._results.push(instance);
 		});
 	}

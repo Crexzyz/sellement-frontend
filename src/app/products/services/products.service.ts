@@ -15,7 +15,11 @@ export class ProductsService extends AbstractRestService<Product> {
   }
 
   async create(object: Product): Promise<Product> {
-    throw new Error('Method not implemented.');
+    // throw new Error('Method not implemented.');
+    const data = object.toJson();
+    let request = this._httpClient.post<Product>(`${this.endpoint}/`, data);
+    let response = await lastValueFrom(request);
+    return response;
   }
   async update(object: Product): Promise<Product> {
     throw new Error('Method not implemented.');
