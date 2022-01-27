@@ -7,7 +7,7 @@ import { DataModel } from "./data-model.model";
 
 @Directive()
 export abstract class ModelEditor<Model extends DataModel> implements OnInit, Submitter {
-    @Input() submitText: string = "Submit";
+    submitText: string = "Submit";
     modelForm: FormGroup = {} as FormGroup;
     protected successMessage = "Success";
 
@@ -34,8 +34,6 @@ export abstract class ModelEditor<Model extends DataModel> implements OnInit, Su
         }
     
         alert(this.successMessage);
-        this.modelForm.reset();
-    
         return true;
     }
 }

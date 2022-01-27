@@ -23,4 +23,10 @@ export class ProductCreateComponent extends ProductFormCommonComponent {
   override async submitToBackend(object: Product) {
     return await this.modelService.create(object);
   }
+
+  override async submit(): Promise<boolean> {
+    const value = await super.submit();
+    this.modelForm.reset();
+    return value;
+  }
 }

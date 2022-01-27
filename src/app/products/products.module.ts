@@ -14,13 +14,16 @@ import { MatButtonModule } from '@angular/material/button';
 import { ProductCreateComponent } from './components/product-create/product-create.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { LoginGuard } from '../users/guards/login.guard';
+import { ProductUpdateComponent } from './components/product-update/product-update.component';
 
 const routes: Routes = [
   {
     path: 'products', canActivate: [LoginGuard],
     children: [
       {path: '', component: ProductListComponent, pathMatch: 'full'},
-      {path: 'create', component: ProductCreateComponent}
+      {path: 'create', component: ProductCreateComponent},
+      {path: 'update/:id', component: ProductUpdateComponent},
+
     ]
   }
 ]
@@ -29,7 +32,8 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     ProductListComponent,
-    ProductCreateComponent
+    ProductCreateComponent,
+    ProductUpdateComponent,
   ],
   imports: [
     RouterModule.forChild(routes),

@@ -13,6 +13,7 @@ export abstract class ProductFormCommonComponent extends ModelEditor<Product> {
   
   ngOnInit(): void {
     this.modelForm = this.formBuilder.group({
+      "id": [null],
       "name": [null, [Validators.required]],
       "description": [null, [Validators.required]],
       "stock": [null, [Validators.required]],
@@ -23,6 +24,7 @@ export abstract class ProductFormCommonComponent extends ModelEditor<Product> {
 
   createModelFromForm(): Product {
     const productData = {
+      "id": this.modelForm.get("id")?.value,
       "name": this.modelForm.get("name")?.value,
       "description": this.modelForm.get("description")?.value,
       "stock": this.modelForm.get("stock")?.value,

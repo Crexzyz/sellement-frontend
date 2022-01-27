@@ -1,5 +1,6 @@
 <div class="form-content">
     <form [formGroup]="modelForm">
+        <input hidden formControlName="id" required>
         <mat-form-field class="form-field" appearance="outline">
             <mat-label>Name</mat-label>
             <input #name matInput maxlength="50" formControlName="name" required>

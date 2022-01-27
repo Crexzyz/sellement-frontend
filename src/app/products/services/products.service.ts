@@ -22,7 +22,7 @@ export class ProductsService extends AbstractRestService<Product> {
   }
   async update(object: Product): Promise<Product> {
     const data = object.toJson();
-    let request = this._httpClient.put<Product>(`${this.endpoint}/`, data);
+    let request = this._httpClient.put<Product>(`${this.endpoint}/${object.id}/`, data);
     let response = await lastValueFrom(request);
     return response;
   }
