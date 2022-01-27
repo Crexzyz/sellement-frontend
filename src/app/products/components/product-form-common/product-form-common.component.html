@@ -1,5 +1,5 @@
 <div class="form-content">
-    <form [formGroup]="productForm">
+    <form [formGroup]="modelForm">
         <mat-form-field class="form-field" appearance="outline">
             <mat-label>Name</mat-label>
             <input #name matInput maxlength="50" formControlName="name" required>
@@ -29,5 +29,5 @@
             <span matPrefix>₡&nbsp;</span>
         </mat-form-field>
     </form>
-    <button mat-flat-button (click)="submit()" class="form-field" color="primary">Create product</button>
+    <button mat-flat-button (click)="submit()" class="form-field" color="primary">{{submitText}}</button>
 </div>
