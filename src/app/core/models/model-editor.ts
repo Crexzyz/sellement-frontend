@@ -9,7 +9,10 @@ import { DataModel } from "./data-model.model";
 export abstract class ModelEditor<Model extends DataModel> implements OnInit, Submitter {
     submitText: string = "Submit";
     modelForm: FormGroup = {} as FormGroup;
-    protected successMessage = "Success";
+    fillableForm: boolean = true;
+    notFillableMessage: string = "Error";
+
+    protected successMessage: string = "Success";
 
     constructor(protected formBuilder: FormBuilder,
                 protected modelService: AbstractRestService<Model>) {}

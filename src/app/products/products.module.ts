@@ -15,14 +15,19 @@ import { ProductCreateComponent } from './components/product-create/product-crea
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { LoginGuard } from '../users/guards/login.guard';
 import { ProductUpdateComponent } from './components/product-update/product-update.component';
+import { SingleProductResolver } from './services/single-product.resolver';
 
 const routes: Routes = [
   {
     path: 'products', canActivate: [LoginGuard],
     children: [
-      {path: '', component: ProductListComponent, pathMatch: 'full'},
-      {path: 'create', component: ProductCreateComponent},
-      {path: 'update/:id', component: ProductUpdateComponent},
+      { path: '', component: ProductListComponent, pathMatch: 'full' },
+      { path: 'create', component: ProductCreateComponent },
+      {
+        path: 'update/:id', component: ProductUpdateComponent, resolve: {
+          data: SingleProductResolver
+        }
+      },
 
     ]
   }

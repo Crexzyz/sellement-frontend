@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { ResolvedModel } from 'src/app/core/interfaces/resolved-model';
 import { Product } from '../../models/product.model';
 import { ProductsService } from '../../services/products.service';
 import { ProductFormCommonComponent } from '../product-form-common/product-form-common.component';
@@ -19,19 +20,16 @@ export class ProductUpdateComponent extends ProductFormCommonComponent {
     super.ngOnInit();
     this.submitText = "Update product";
     this.successMessage = "Product updated";
-    const stringId = this.route.snapshot.paramMap.get('id');
 
-    if(stringId == null)
-      return
-
-    let id: number = parseInt(stringId);
-
-    if(id == NaN)
+    const resolvedData: ResolvedModel<Product> = this.route.snapshot.data['data'];
+    if (resolvedData.error != null) {
+      this.notFillableMessage = resolvedData.error;
+      this.fillableForm = false;
       return;
+    }
 
-    const product: Product = new Product(id=id);
-    const data = await this.modelService.get(product)
-    product.fromJson(data);
+    const product: Product = new Product();
+    product.fromJson(resolvedData.model);
 
     this.modelForm.controls['id'].setValue(product.id);
     this.modelForm.controls['name'].setValue(product.name);

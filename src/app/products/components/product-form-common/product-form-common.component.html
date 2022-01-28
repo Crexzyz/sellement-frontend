@@ -1,5 +1,5 @@
 <div class="form-content">
-    <form [formGroup]="modelForm">
+    <form *ngIf="fillableForm" [formGroup]="modelForm">
         <input hidden formControlName="id" required>
         <mat-form-field class="form-field" appearance="outline">
             <mat-label>Name</mat-label>
@@ -29,6 +29,7 @@
             <input matInput type="number" placeholder="0" min="0" formControlName="sell_price" required>
             <span matPrefix>₡&nbsp;</span>
         </mat-form-field>
+        <button mat-flat-button (click)="submit()" class="form-field" color="primary">{{submitText}}</button>
     </form>
-    <button mat-flat-button (click)="submit()" class="form-field" color="primary">{{submitText}}</button>
+    <div *ngIf="!fillableForm">{{notFillableMessage}}</div>
 </div>
