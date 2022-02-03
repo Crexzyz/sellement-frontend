@@ -1,23 +1,26 @@
-<table mat-table [dataSource]="dataSource">
-    <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef>Name</th>
-        <td mat-cell *matCellDef="let element">{{element.name}}</td>
-    </ng-container>
-    <ng-container matColumnDef="stock">
-        <th mat-header-cell *matHeaderCellDef>Stock</th>
-        <td mat-cell *matCellDef="let element">{{element.stock}}</td>
-    </ng-container>
-    <ng-container matColumnDef="purchasePrice">
-        <th mat-header-cell *matHeaderCellDef>Purchase price</th>
-        <td mat-cell *matCellDef="let element">{{element.purchasePrice}}</td>
-    </ng-container>
-    <ng-container matColumnDef="sellPrice">
-        <th mat-header-cell *matHeaderCellDef>Sell price</th>
-        <td mat-cell *matCellDef="let element">{{element.sellPrice}}</td>
-    </ng-container>
+<mat-spinner *ngIf="loading"></mat-spinner>
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
-<mat-paginator #paginator [pageSizeOptions]="[10]" aria-label="Select page">
+<div fxLayout="row wrap"
+     fxLayout.xs="column wrap"
+     fxLayoutAlign="start none"
+     fxLayoutGap="3%">
+    <mat-card class="product" *ngFor="let product of dataContainer.results"
+              fxFlex="30%" >
+        <mat-card-title>{{product.name}}</mat-card-title>
+        <mat-card-actions align="end">
+            <button mat-icon-button aria-label="Information"
+                    (click)="showDetails(product.id)">
+                <mat-icon>info</mat-icon>
+            </button>
+        </mat-card-actions>
+    </mat-card>
+</div>
+
+
+<mat-paginator #paginator
+                [length]="dataContainer.count" 
+                [pageIndex]="dataContainer.currentPage"
+                [pageSizeOptions]="[10]"
+                (page)="pageChanged($event)" 
+                aria-label="Select page">
 </mat-paginator>

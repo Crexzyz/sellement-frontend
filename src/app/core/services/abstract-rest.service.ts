@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { lastValueFrom, Observable } from 'rxjs';
 import { RestService } from '../interfaces/rest-service'
 
 export abstract class AbstractRestService<T> implements RestService<T> {
@@ -12,8 +12,10 @@ export abstract class AbstractRestService<T> implements RestService<T> {
     this.endpoint = `${this.base_endpoint}/${this.custom_endpoint}`;
   }
 
-  getAll(): Observable<T[]> {
-    return this._httpClient.get<T[]>(this.endpoint);
+  async getAll(page: number): Promise<any> {
+    page += 1;
+    const pageArgument = page > 1 ? `/?page=${page}` : '/';
+    return await lastValueFrom(this._httpClient.get(`${this.endpoint}${pageArgument}`));
   }
 
   abstract get(object: T): Promise<T>;

@@ -2,6 +2,7 @@ import { Newable } from "../interfaces/newable";
 import { DataModel } from "./data-model.model";
 
 export class PaginatedContainer<T extends DataModel> {
+	private _currentPage: number;
     private _count: number;
     private _next: string;
     private _prev: string;
@@ -10,7 +11,7 @@ export class PaginatedContainer<T extends DataModel> {
 	fromData(data: any, type: Newable<T>): void {
 		this._count = data.count || 0;
 		this._next = data.next || "";
-		this._prev = data.prev || "";
+		this._prev = data.previous || "";
 		this._results = []
 
 		data.results.forEach((element: any) => {
@@ -20,7 +21,8 @@ export class PaginatedContainer<T extends DataModel> {
 		});
 	}
 
-	constructor(count: number = 0, next: string = "", prev: string = "", results: T[] = []) {
+	constructor(currentPage: number = 0, count: number = 0, next: string = "", prev: string = "", results: T[] = []) {
+		this._currentPage = currentPage;
 		this._count = count;
 		this._next = next;
 		this._prev = prev;
@@ -41,5 +43,13 @@ export class PaginatedContainer<T extends DataModel> {
 
 	public get results(): T[] {
 		return this._results;
+	}
+
+	public get currentPage(): number {
+		return this._currentPage;
+	}
+
+	public set currentPage(value: number) {
+		this._currentPage = value;
 	}
 }
