@@ -1,0 +1,37 @@
+<div *ngIf="error">
+    {{errorMessage}}
+</div>
+<div *ngIf="!error" >
+    <div fxLayout="row wrap" fxLayout.xs="column"  fxLayoutAlign="space-between stretch">
+        <div fxFlex="100%" fxLayout="row" fxLayout.xs="column" fxLayoutGap="3%">
+            <mat-card class="card-flat" fxFlex="50%">
+                <h1>{{product.name}}</h1>
+                <div>{{product.description}}</div>
+            </mat-card>
+            <mat-card class="card-flat" fxFlex="50%" fxLayout="column">
+                 <div fxLayout="column">
+                    <div fxLayout="row">
+                        <div fxFlex="50">Stock </div>
+                        <div fxFlex="50">{{product.stock}}</div>
+                    </div>
+                    <div fxLayout="row">
+                        <div fxFlex="50">Purchase price </div>
+                        <div fxFlex="50">{{product.purchasePrice}}</div>
+                    </div>
+                    <div fxLayout="row">
+                        <div fxFlex="50">Sell price </div>
+                        <div fxFlex="50">{{product.sellPrice}}</div>
+                    </div>
+                    <div fxLayout="row">
+                        <div fxFlex="50">Last modified </div>
+                        <div fxFlex="50">{{product.lastModified}}</div>
+                    </div>
+                </div>
+            </mat-card>
+        </div>
+        <div class="actions" fxFlex="100%" fxLayout="row" fxLayout.xs="column" fxLayoutGap="3%">
+            <button fxFlex="50%" mat-flat-button color="primary">Update product</button>
+            <button fxFlex="50%" mat-flat-button color="warn">Delete product</button>
+        </div>
+    </div>
+</div>

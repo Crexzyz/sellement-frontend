@@ -13,12 +13,14 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatButtonModule } from '@angular/material/button';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatIconModule } from '@angular/material/icon'
+import { MatDividerModule } from '@angular/material/divider';
 
 import { ProductCreateComponent } from './components/product-create/product-create.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { LoginGuard } from '../users/guards/login.guard';
 import { ProductUpdateComponent } from './components/product-update/product-update.component';
 import { SingleProductResolver } from './services/single-product.resolver';
+import { ProductDetailsComponent } from './components/product-details/product-details.component';
 
 const routes: Routes = [
   {
@@ -31,7 +33,11 @@ const routes: Routes = [
           data: SingleProductResolver
         }
       },
-
+      {
+        path: 'details/:id', component: ProductDetailsComponent, resolve: {
+          data: SingleProductResolver
+        }
+      },
     ]
   }
 ]
@@ -42,6 +48,7 @@ const routes: Routes = [
     ProductListComponent,
     ProductCreateComponent,
     ProductUpdateComponent,
+    ProductDetailsComponent,
   ],
   imports: [
     RouterModule.forChild(routes),
@@ -57,6 +64,7 @@ const routes: Routes = [
     MatCardModule,
     MatIconModule,
     FlexLayoutModule,
+    MatDividerModule
   ],
   exports: [
     ProductListComponent

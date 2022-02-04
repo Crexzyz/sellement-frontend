@@ -1,9 +1,6 @@
-.product {
-    border: 1px solid lightgray;
-    box-shadow: none;
-    margin-bottom: 3%;
-}
+@import '../../../../styles.scss';
 
-.product > * {
-    word-break: break-all;
+.product {
+    @extend .card-flat;
+    margin-bottom: 3%;
 }

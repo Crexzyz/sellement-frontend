@@ -2,3 +2,16 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.card-flat {
+    border: 1px solid lightgray;
+    box-shadow: none;
+}
+
+.card-flat > * {
+    word-break: break-all;
+}
+
+.actions {
+    margin-top: 1rem;
+}
