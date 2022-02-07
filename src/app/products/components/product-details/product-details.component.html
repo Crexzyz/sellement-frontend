@@ -30,7 +30,7 @@
             </mat-card>
         </div>
         <div class="actions" fxFlex="100%" fxLayout="row" fxLayout.xs="column" fxLayoutGap="3%">
-            <button fxFlex="50%" mat-flat-button color="primary">Update product</button>
+            <a fxFlex="50%" routerLink="/products/update/{{product.id}}" mat-flat-button color="primary">Update product</a>
             <button fxFlex="50%" mat-flat-button color="warn">Delete product</button>
         </div>
     </div>

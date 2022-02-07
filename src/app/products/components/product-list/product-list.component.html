@@ -8,10 +8,9 @@
               fxFlex="30%" >
         <mat-card-title>{{product.name}}</mat-card-title>
         <mat-card-actions align="end">
-            <button mat-icon-button aria-label="Information"
-                    (click)="showDetails(product.id)">
+            <a mat-icon-button aria-label="Information" routerLink="details/{{product.id}}">
                 <mat-icon>info</mat-icon>
-            </button>
+            </a>
         </mat-card-actions>
     </mat-card>
 </div>
