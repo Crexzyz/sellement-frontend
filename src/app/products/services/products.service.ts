@@ -20,14 +20,19 @@ export class ProductsService extends AbstractRestService<Product> {
     let response = await lastValueFrom(request);
     return response;
   }
+
   async update(object: Product): Promise<Product> {
     const data = object.toJson();
     let request = this._httpClient.put<Product>(`${this.endpoint}/${object.id}/`, data);
     let response = await lastValueFrom(request);
     return response;
   }
+
   async delete(object: Product): Promise<Product> {
-    throw new Error('Method not implemented.');
+    const data = object.toJson();
+    let request = this._httpClient.delete<Product>(`${this.endpoint}/${object.id}/`, data);
+    let response = await lastValueFrom(request);
+    return response;
   }
 
   constructor(httpClient: HttpClient) {

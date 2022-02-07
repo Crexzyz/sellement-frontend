@@ -23,9 +23,11 @@ export abstract class ModelEditor<Model extends DataModel> implements OnInit, Su
 
     async submit(): Promise<boolean> {
         this.modelForm.markAllAsTouched();
+        console.log(this.modelForm);
     
-        if(!this.modelForm.valid)
+        if(!this.modelForm.valid) {
           return false;
+        }
         
         const product: Model = this.createModelFromForm();
       

@@ -18,6 +18,11 @@ export class ProductCreateComponent extends ProductFormCommonComponent {
     super.ngOnInit();
     this.submitText = "Create product";
     this.successMessage = "Product created";
+
+    const idField = this.modelForm.get('id');
+    if(idField) {
+      idField.setValue(0);
+    }
   }
 
   override async submitToBackend(object: Product) {
@@ -25,8 +30,11 @@ export class ProductCreateComponent extends ProductFormCommonComponent {
   }
 
   override async submit(): Promise<boolean> {
-    const value = await super.submit();
-    this.modelForm.reset();
-    return value;
+    const validRequest = await super.submit();
+
+    if(validRequest)
+      this.modelForm.reset();
+
+    return validRequest;
   }
 }

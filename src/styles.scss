@@ -2,6 +2,7 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+main { height: 100%; }
 
 .card-flat {
     border: 1px solid lightgray;
@@ -9,9 +10,24 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 
 .card-flat > * {
-    word-break: break-all;
+    word-break: break-word;
 }
 
 .actions {
     margin-top: 1rem;
+}
+
+.main-text {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+.main-icon {
+    font-size: 2.5rem;
+    height: 3rem;
+    width: 3rem;
+    display: flex;
+    text-align: center;
+    align-items: center;
 }

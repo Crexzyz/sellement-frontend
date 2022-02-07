@@ -21,6 +21,7 @@ import { LoginGuard } from '../users/guards/login.guard';
 import { ProductUpdateComponent } from './components/product-update/product-update.component';
 import { SingleProductResolver } from './services/single-product.resolver';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
+import { ProductDeleteComponent } from './components/product-delete/product-delete.component';
 
 const routes: Routes = [
   {
@@ -38,6 +39,11 @@ const routes: Routes = [
           data: SingleProductResolver
         }
       },
+      {
+        path: 'delete/:id', component: ProductDeleteComponent, resolve: {
+          data: SingleProductResolver
+        }
+      },
     ]
   }
 ]
@@ -49,6 +55,7 @@ const routes: Routes = [
     ProductCreateComponent,
     ProductUpdateComponent,
     ProductDetailsComponent,
+    ProductDeleteComponent,
   ],
   imports: [
     RouterModule.forChild(routes),
