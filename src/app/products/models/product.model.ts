@@ -11,7 +11,7 @@ export class Product extends DataModel {
 
     fromJson(data: any): void {
         this.init(data.id, data.name, data.description, data.stock,
-            data.purchase_price, data.sell_price, data.last_modified)
+            data.purchase_price, data.sell_price, data.date_modified)
     }
 
     toJson(): {[key: string]: string} {
@@ -42,7 +42,6 @@ export class Product extends DataModel {
         this._stock = stock;
         this._purchasePrice = purchasePrice;
         this._sellPrice = sellPrice;
-        // TODO: Change format in Django serializer
         this._lastModified = new Date(lastModified);
     }
 
