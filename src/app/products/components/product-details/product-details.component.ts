@@ -12,6 +12,7 @@ export class ProductDetailsComponent implements OnInit {
   product: Product = new Product();
   error: boolean = false;
   errorMessage: string = "";
+
   constructor(private route: ActivatedRoute) {
     const data: ResolvedModel<Product> = this.route.snapshot.data['data'];
     this.error = data.error != null;

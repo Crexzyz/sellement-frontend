@@ -108,4 +108,21 @@ export class Product extends DataModel {
     public set lastModified(value: Date) {
         this._lastModified = value;
     }
+
+    override getTitle(): string {
+        return this.name
+    }
+
+    override getDescription(): string {
+        return this.description
+    }
+
+    override getValues(): { [key: string]: string; } {
+        return {
+            "Stock": this.stock.toString(),
+            "Purchase price": this.purchasePrice.toString(),
+            "Sell price": this.sellPrice.toString(),
+            "Last modified": this.lastModified.toLocaleString()
+        }
+    }
 }

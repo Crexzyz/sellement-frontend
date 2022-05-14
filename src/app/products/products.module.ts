@@ -22,6 +22,7 @@ import { ProductUpdateComponent } from './components/product-update/product-upda
 import { SingleProductResolver } from './services/single-product.resolver';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { ProductDeleteComponent } from './components/product-delete/product-delete.component';
+import { CoreModule } from '../core/core.module';
 
 const routes: Routes = [
   {
@@ -71,7 +72,8 @@ const routes: Routes = [
     MatCardModule,
     MatIconModule,
     FlexLayoutModule,
-    MatDividerModule
+    MatDividerModule,
+    CoreModule
   ],
   exports: [
     ProductListComponent
