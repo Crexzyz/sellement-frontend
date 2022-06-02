@@ -1,3 +1,4 @@
+import { ActionButton } from "src/app/core/models/action-button.model";
 import { DataModel } from "src/app/core/models/data-model.model";
 
 export class Product extends DataModel {
@@ -8,23 +9,6 @@ export class Product extends DataModel {
     private _purchasePrice: number = 0;
     private _sellPrice: number = 0;
     private _lastModified: Date = new Date();
-
-    fromJson(data: any): void {
-        this.init(data.id, data.name, data.description, data.stock,
-            data.purchase_price, data.sell_price, data.date_modified)
-    }
-
-    toJson(): {[key: string]: string} {
-        return {
-            "id": this.id.toString(),
-            "name": this.name,
-            "description": this.description,
-            "stock": this.stock.toString(),
-            "purchase_price": this.purchasePrice.toString(),
-            "sell_price": this.sellPrice.toString(),
-            "last_modified": this.lastModified.toDateString()
-          }
-    }
 
     constructor(id: number = 0, name: string = "", description: string = "",
         stock: number = 0, purchasePrice: number = 0, sellPrice: number = 0,
@@ -43,6 +27,23 @@ export class Product extends DataModel {
         this._purchasePrice = purchasePrice;
         this._sellPrice = sellPrice;
         this._lastModified = new Date(lastModified);
+    }
+
+    override fromJson(data: any): void {
+        this.init(data.id, data.name, data.description, data.stock,
+            data.purchase_price, data.sell_price, data.date_modified)
+    }
+
+    override toJson(): {[key: string]: string} {
+        return {
+            "id": this.id.toString(),
+            "name": this.name,
+            "description": this.description,
+            "stock": this.stock.toString(),
+            "purchase_price": this.purchasePrice.toString(),
+            "sell_price": this.sellPrice.toString(),
+            "last_modified": this.lastModified.toDateString()
+          }
     }
 
     public get id(): number {

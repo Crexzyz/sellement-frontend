@@ -1,0 +1,33 @@
+<div *ngIf="error">
+    {{errorMessage}}
+</div>
+<div *ngIf="!error">
+    <div *ngIf="helpMessage != ''" fxLayout="row" fxLayoutAlign="left center">
+        <mat-icon class="main-icon">help</mat-icon>
+        <h1 class="main-text">
+            {{helpMessage}}
+        </h1>
+    </div>
+    <!-- TODO: Make the layout configurable with parameters -->
+    <div fxLayout="row wrap" fxLayout.xs="column"  fxLayoutAlign="space-between stretch">
+        <app-model-details fxFlex="100%" fxLayout="row" fxLayout.xs="column" fxLayoutGap="3%" [dataSource]="model"></app-model-details>
+        <div class="actions" fxFlex="100%" fxLayout="row" fxLayout.xs="column" fxLayoutGap="3%">
+            <ng-container *ngFor="let button of buttons">
+                <ng-container *ngIf="button.clickCallback != undefined; else linkButton">
+                    <a fxFlex="50%" mat-flat-button
+                        color="{{button.color}}" [disabled]="button.disabled"
+                        (click)="button.clickCallback()">
+                        {{button.displayText}}
+                    </a>
+                </ng-container>
+                <ng-template #linkButton>
+                    <a fxFlex="50%" mat-flat-button
+                        color="{{button.color}}" [disabled]="button.disabled"
+                        routerLink="{{button.routerLink}}">
+                        {{button.displayText}}
+                    </a>
+                </ng-template>
+            </ng-container>
+        </div>
+    </div>
+</div>

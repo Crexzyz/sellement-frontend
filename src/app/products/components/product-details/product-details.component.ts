@@ -1,27 +1,33 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ResolvedModel } from 'src/app/core/interfaces/resolved-model';
+import { ActionableDetailedModelComponent } from 'src/app/core/components/actionable-detailed-model/actionable-detailed-model.component';
+import { ActionButton } from 'src/app/core/models/action-button.model';
 import { Product } from '../../models/product.model';
 
 @Component({
   selector: 'app-product-details',
-  templateUrl: './product-details.component.html',
-  styleUrls: ['./product-details.component.scss', '../../../../styles.scss']
+  templateUrl: '../../../core/components/actionable-detailed-model/actionable-detailed-model.component.html',
+  styleUrls: [
+    '../../../../styles.scss',
+    '../../../core/components/actionable-detailed-model/actionable-detailed-model.component.scss'
+  ]
 })
-export class ProductDetailsComponent implements OnInit {
-  product: Product = new Product();
-  error: boolean = false;
-  errorMessage: string = "";
+export class ProductDetailsComponent extends ActionableDetailedModelComponent<Product> implements OnInit {
+  constructor(route: ActivatedRoute) {
+    // Generic logic is in charge of initializing the Product model
+    super(route, new Product());
 
-  constructor(private route: ActivatedRoute) {
-    const data: ResolvedModel<Product> = this.route.snapshot.data['data'];
-    this.error = data.error != null;
-    if(this.error) {
-      this.errorMessage = data.error;
-      return;
-    }
+    let updateButton = new ActionButton()
+      .withRouterLink(`/products/update/${this.model.id}`)
+      .withColor("primary")
+      .withDisplayText("Update product")
 
-    this.product.fromJson(data.model);
+    let deleteButton = new ActionButton()
+      .withRouterLink(`/products/delete/${this.model.id}`)
+      .withColor("warn")
+      .withDisplayText("Delete product")
+
+    this.buttons.push(updateButton, deleteButton);
   }
 
   ngOnInit(): void {
