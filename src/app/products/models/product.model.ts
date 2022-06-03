@@ -1,4 +1,3 @@
-import { ActionButton } from "src/app/core/models/action-button.model";
 import { DataModel } from "src/app/core/models/data-model.model";
 
 export class Product extends DataModel {

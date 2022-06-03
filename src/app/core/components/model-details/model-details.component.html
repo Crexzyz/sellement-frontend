@@ -1,14 +1,12 @@
-<div fxFlex="100%" fxLayout="row" fxLayout.xs="column" fxLayoutGap="3%">
-    <mat-card class="card-flat" fxFlex="50%">
-        <h1>{{dataSource.getTitle()}}</h1>
-        <div>{{dataSource.getDescription()}}</div>
-    </mat-card>
-    <mat-card class="card-flat" fxFlex="50%" fxLayout="column">
-         <div fxLayout="column">
-            <div *ngFor="let item of dataSource.getValues() | keyvalue" fxLayout="row">
-                <div fxFlex="50">{{item.key}}</div>
-                <div fxFlex="50">{{item.value}}</div>
-            </div>
+<mat-card class="card-flat" fxFlex="50%">
+    <h1>{{dataSource.getTitle()}}</h1>
+    <div>{{dataSource.getDescription()}}</div>
+</mat-card>
+<mat-card class="card-flat" fxFlex="50%" fxLayout="column">
+        <div fxLayout="column">
+        <div *ngFor="let item of dataSource.getValues() | keyvalue" fxLayout="row">
+            <div fxFlex="50">{{item.key}}</div>
+            <div fxFlex="50">{{item.value}}</div>
         </div>
-    </mat-card>
-</div>
+    </div>
+</mat-card>

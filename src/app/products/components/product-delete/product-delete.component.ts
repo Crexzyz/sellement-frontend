@@ -17,7 +17,7 @@ import { ProductsService } from '../../services/products.service';
   ]
 })
 export class ProductDeleteComponent extends ActionableDetailedModelComponent<Product> implements ViewCallback {
-  private static deleteCallback: string = "delete"
+  private static DELETE_CALLBACK: string = "delete"
 
   constructor(route: ActivatedRoute, private service: ProductsService, private router: Router) {
     super(route, new Product())
@@ -28,7 +28,7 @@ export class ProductDeleteComponent extends ActionableDetailedModelComponent<Pro
       .withDisplayText("Cancel");
 
     let deleteButton = new ActionButton()
-      .withViewCallback(this, ProductDeleteComponent.deleteCallback)
+      .withViewCallback(this, ProductDeleteComponent.DELETE_CALLBACK)
       .withColor("warn")
       .withDisplayText("Confirm deletion");
 
@@ -36,10 +36,11 @@ export class ProductDeleteComponent extends ActionableDetailedModelComponent<Pro
     this.helpMessage = "Are you sure you want to delete this product?"
   }
   
+  /**
+   * Deletes the model associated to this view
+   */
   private delete(): void {
     try {
-      // TODO: Fix callback. The this variable becomes the
-      // action button when passing the "function pointer"
       this.service.delete(this.model);
       // TODO: Add better confirmation message
       alert("Product deleted")
@@ -53,7 +54,7 @@ export class ProductDeleteComponent extends ActionableDetailedModelComponent<Pro
   }
 
   runCallback(method: string): void {
-    if(method == ProductDeleteComponent.deleteCallback) {
+    if(method == ProductDeleteComponent.DELETE_CALLBACK) {
       this.delete();
     }
   }
