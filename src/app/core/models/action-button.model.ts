@@ -1,10 +1,13 @@
+import { ViewCallback } from "../interfaces/view-callback";
+
 export class ActionButton {
     protected _routerLink: string = "";
     // Empty color falls back to Basic
     protected _color: string = "";
     protected _displayText: string = "Button";
     protected _disabled: boolean = false;
-    protected _clickCallback!: () => void;
+    protected _viewCallback!: ViewCallback;
+    protected _viewCallbackMethod!: string;
 
     public withRouterLink(routerLink: string): ActionButton {
         this.routerLink = routerLink;
@@ -26,8 +29,9 @@ export class ActionButton {
         return this;
     }
 
-    public withClickCallback(callback: () => void): ActionButton {
-        this.clickCallback = callback;
+    public withViewCallback(viewCallback: ViewCallback, method: string): ActionButton {
+        this.viewCallback = viewCallback;
+        this.viewCallbackMethod = method;
         return this;
     }
     
@@ -63,10 +67,19 @@ export class ActionButton {
         this._disabled = value;
     }
 
-    public get clickCallback(): () => void {
-        return this._clickCallback;
+    public get viewCallback(): ViewCallback {
+        return this._viewCallback;
     }
-    public set clickCallback(callback: () => void) {
-        this._clickCallback = callback;
+
+    public set viewCallback(callback: ViewCallback) {
+        this._viewCallback = callback;
+    }
+
+    public get viewCallbackMethod(): string {
+        return this._viewCallbackMethod;
+    }
+
+    public set viewCallbackMethod(value: string) {
+        this._viewCallbackMethod = value;
     }
 }

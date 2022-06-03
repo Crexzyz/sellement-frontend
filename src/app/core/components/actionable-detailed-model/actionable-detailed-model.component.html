@@ -13,10 +13,10 @@
         <app-model-details fxFlex="100%" fxLayout="row" fxLayout.xs="column" fxLayoutGap="3%" [dataSource]="model"></app-model-details>
         <div class="actions" fxFlex="100%" fxLayout="row" fxLayout.xs="column" fxLayoutGap="3%">
             <ng-container *ngFor="let button of buttons">
-                <ng-container *ngIf="button.clickCallback != undefined; else linkButton">
+                <ng-container *ngIf="button.viewCallback != undefined; else linkButton">
                     <a fxFlex="50%" mat-flat-button
                         color="{{button.color}}" [disabled]="button.disabled"
-                        (click)="button.clickCallback()">
+                        (click)="button.viewCallback.runCallback(button.viewCallbackMethod)">
                         {{button.displayText}}
                     </a>
                 </ng-container>

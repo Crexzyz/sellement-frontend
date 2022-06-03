@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ActionableDetailedModelComponent } from 'src/app/core/components/actionable-detailed-model/actionable-detailed-model.component';
 import { ResolvedModel } from 'src/app/core/interfaces/resolved-model';
+import { ViewCallback } from 'src/app/core/interfaces/view-callback';
 import { ActionButton } from 'src/app/core/models/action-button.model';
 import { Product } from '../../models/product.model';
 import { ProductsService } from '../../services/products.service';
@@ -15,7 +16,9 @@ import { ProductsService } from '../../services/products.service';
     '../../../core/components/actionable-detailed-model/actionable-detailed-model.component.scss'
   ]
 })
-export class ProductDeleteComponent extends ActionableDetailedModelComponent<Product> implements OnInit {
+export class ProductDeleteComponent extends ActionableDetailedModelComponent<Product> implements ViewCallback {
+  private static deleteCallback: string = "delete"
+
   constructor(route: ActivatedRoute, private service: ProductsService, private router: Router) {
     super(route, new Product())
 
@@ -25,18 +28,15 @@ export class ProductDeleteComponent extends ActionableDetailedModelComponent<Pro
       .withDisplayText("Cancel");
 
     let deleteButton = new ActionButton()
-      .withClickCallback(this.delete)
+      .withViewCallback(this, ProductDeleteComponent.deleteCallback)
       .withColor("warn")
       .withDisplayText("Confirm deletion");
 
     this.buttons.push(cancelButton, deleteButton);
     this.helpMessage = "Are you sure you want to delete this product?"
   }
-
-  ngOnInit(): void {
-  }
-
-  delete(): void {
+  
+  private delete(): void {
     try {
       // TODO: Fix callback. The this variable becomes the
       // action button when passing the "function pointer"
@@ -49,6 +49,12 @@ export class ProductDeleteComponent extends ActionableDetailedModelComponent<Pro
       let httpError = error as HttpErrorResponse;
       this.errorMessage = httpError.message;
       this.error = true;
+    }
+  }
+
+  runCallback(method: string): void {
+    if(method == ProductDeleteComponent.deleteCallback) {
+      this.delete();
     }
   }
 }
