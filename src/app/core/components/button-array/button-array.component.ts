@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ActionButton } from '../../models/action-button.model';
 
 @Component({
@@ -6,13 +6,9 @@ import { ActionButton } from '../../models/action-button.model';
   templateUrl: './button-array.component.html',
   styleUrls: ['./button-array.component.scss']
 })
-export class ButtonArrayComponent implements OnInit {
+export class ButtonArrayComponent  {
   @Input()
   buttons!: Array<ActionButton>;
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
-
 }

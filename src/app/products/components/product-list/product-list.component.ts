@@ -1,6 +1,5 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
-import { timer } from 'rxjs';
 import { PaginatedContainer } from 'src/app/core/models/paginated-container.model';
 import { Product } from '../../models/product.model';
 import { ProductsService } from '../../services/products.service';
@@ -10,14 +9,11 @@ import { ProductsService } from '../../services/products.service';
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.scss']
 })
-export class ProductListComponent implements OnInit, AfterViewInit {
+export class ProductListComponent implements OnInit {
   dataContainer: PaginatedContainer<Product> = new PaginatedContainer();
   loading: boolean = true;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-
-  ngAfterViewInit(): void {
-  }
 
   constructor(private _productsService: ProductsService) { }
 

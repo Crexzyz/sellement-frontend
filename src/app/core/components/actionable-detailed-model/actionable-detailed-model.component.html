@@ -2,7 +2,7 @@
     {{errorMessage}}
 </div>
 <div *ngIf="!error">
-    <div *ngIf="helpMessage != ''" fxLayout="row" fxLayoutAlign="left center">
+    <div *ngIf="helpMessage !== ''" fxLayout="row" fxLayoutAlign="left center">
         <mat-icon class="main-icon">help</mat-icon>
         <h1 class="main-text">
             {{helpMessage}}

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ActionableDetailedModelComponent } from 'src/app/core/components/actionable-detailed-model/actionable-detailed-model.component';
 import { ActionButton } from 'src/app/core/models/action-button.model';
@@ -12,7 +12,7 @@ import { Product } from '../../models/product.model';
     '../../../core/components/actionable-detailed-model/actionable-detailed-model.component.scss'
   ]
 })
-export class ProductDetailsComponent extends ActionableDetailedModelComponent<Product> implements OnInit {
+export class ProductDetailsComponent extends ActionableDetailedModelComponent<Product>  {
   constructor(route: ActivatedRoute) {
     // Generic logic is in charge of initializing the Product model
     super(route, new Product());
@@ -29,8 +29,4 @@ export class ProductDetailsComponent extends ActionableDetailedModelComponent<Pr
 
     this.buttons.push(updateButton, deleteButton);
   }
-
-  ngOnInit(): void {
-  }
-
 }

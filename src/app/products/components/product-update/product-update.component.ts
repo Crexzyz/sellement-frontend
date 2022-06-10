@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ResolvedModel } from 'src/app/core/interfaces/resolved-model';
@@ -11,7 +11,7 @@ import { ProductFormCommonComponent } from '../product-form-common/product-form-
   templateUrl: '../product-form-common/product-form-common.component.html',
   styleUrls: ['../product-form-common/product-form-common.component.scss']
 })
-export class ProductUpdateComponent extends ProductFormCommonComponent {
+export class ProductUpdateComponent extends ProductFormCommonComponent implements OnInit {
   constructor(formBuilder: FormBuilder, service: ProductsService, private route: ActivatedRoute) {
     super(formBuilder, service);
   }

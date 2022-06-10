@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Product } from '../../models/product.model';
 import { ProductsService } from '../../services/products.service';
@@ -9,7 +9,7 @@ import { ProductFormCommonComponent } from '../product-form-common/product-form-
   templateUrl: '../product-form-common/product-form-common.component.html',
   styleUrls: ['../product-form-common/product-form-common.component.scss']
 })
-export class ProductCreateComponent extends ProductFormCommonComponent {
+export class ProductCreateComponent extends ProductFormCommonComponent implements OnInit {
   constructor(formBuilder: FormBuilder, service: ProductsService) {
     super(formBuilder, service);
   }

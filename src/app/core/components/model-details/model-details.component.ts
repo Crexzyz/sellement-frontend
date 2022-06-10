@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { DetailsGettable } from '../../interfaces/details-gettable';
 
 @Component({
@@ -6,14 +6,10 @@ import { DetailsGettable } from '../../interfaces/details-gettable';
   templateUrl: './model-details.component.html',
   styleUrls: ['./model-details.component.scss']
 })
-export class ModelDetailsComponent implements OnInit {
+export class ModelDetailsComponent  {
   @Input()
   dataSource!: DetailsGettable;
   
   constructor() {
   }
-
-  ngOnInit(): void {
-  }
-
 }
