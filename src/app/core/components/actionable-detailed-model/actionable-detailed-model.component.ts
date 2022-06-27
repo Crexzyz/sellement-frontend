@@ -1,10 +1,8 @@
-import { Directive } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ResolvedModel } from '../../interfaces/resolved-model';
 import { ActionButton } from '../../models/action-button.model';
 import { DataModel } from '../../models/data-model.model';
 
-@Directive()
 export abstract class ActionableDetailedModelComponent<Model extends DataModel> {
   error: boolean = false;
   errorMessage: string = "";
