@@ -31,12 +31,14 @@ export class ProductUpdateComponent extends ProductFormCommonComponent implement
     const product: Product = new Product();
     product.fromJson(resolvedData.model);
 
-    this.modelForm.controls['id'].setValue(product.id);
-    this.modelForm.controls['name'].setValue(product.name);
-    this.modelForm.controls['description'].setValue(product.description);
-    this.modelForm.controls['stock'].setValue(product.stock);
-    this.modelForm.controls['purchase_price'].setValue(product.purchasePrice);
-    this.modelForm.controls['sell_price'].setValue(product.sellPrice);
+    this.modelForm.patchValue({
+      "id": product.id,
+      "name": product.name,
+      "description": product.description,
+      "stock": product.stock,
+      "purchase_price": product.purchasePrice,
+      "sell_price": product.sellPrice
+    });
   }
 
   override async submitToBackend(object: Product) {

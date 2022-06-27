@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Directive, Input, OnInit } from "@angular/core";
+import { Directive, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { Submitter } from "../interfaces/submitter";
 import { AbstractRestService } from "../services/abstract-rest.service";
@@ -28,10 +28,10 @@ export abstract class ModelEditor<Model extends DataModel> implements OnInit, Su
           return false;
         }
         
-        const product: Model = this.createModelFromForm();
+        const model: Model = this.createModelFromForm();
       
         try {
-          await this.submitToBackend(product);
+          await this.submitToBackend(model);
         } catch (error: any) {
           console.log(error as HttpErrorResponse); 
           return false;
