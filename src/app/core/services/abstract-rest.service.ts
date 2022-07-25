@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { lastValueFrom, Observable } from 'rxjs';
 import { RestService } from '../interfaces/rest-service'
 
+// TODO: Rename to just RestService
 export abstract class AbstractRestService<T> implements RestService<T> {
   protected base_endpoint: string = "http://localhost:8000";
   protected custom_endpoint: string;
@@ -22,5 +23,5 @@ export abstract class AbstractRestService<T> implements RestService<T> {
   abstract create(object: T): Promise<T>;
   abstract update(object: T): Promise<T>;
   abstract delete(object: T): Promise<T>;
-  abstract form(): Promise<any>;
+  abstract form(object?: T): Promise<any>;
 }

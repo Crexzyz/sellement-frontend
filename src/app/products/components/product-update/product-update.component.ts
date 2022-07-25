@@ -11,7 +11,7 @@ import { ProductFormCommonComponent } from '../product-form-common/product-form-
   templateUrl: '../product-form-common/product-form-common.component.html',
   styleUrls: ['../product-form-common/product-form-common.component.scss']
 })
-export class ProductUpdateComponent extends ProductFormCommonComponent implements AfterViewInit {
+export class ProductUpdateComponent extends ProductFormCommonComponent {
   override submitText: string = "Update product";
   override successMessage: string = "Product updated";
 
@@ -19,32 +19,21 @@ export class ProductUpdateComponent extends ProductFormCommonComponent implement
     super(formBuilder, service);
   }
   
-  ngAfterViewInit(): void {
-    const resolvedData: ResolvedModel<Product> = this.route.snapshot.data['data'];
-    if (resolvedData.error != null) {
-      this.notFillableMessage = resolvedData.error;
-      this.fillableForm = false;
-      return;
+  override async getForm(): Promise<void> {
+    // TODO: Consider populating the form with an automatically resolved model
+    // This should be done as soon as the fields are available to avoid
+    // patchValue() problems due to the async call
+    // Keeping the model in memory, instead of hiding the product's ID is
+    // considered as the Angular way of forms
+    let productId = this.route.snapshot.paramMap.get("id");
+    if (productId !== null) {
+      let id: number = +productId;
+      let product: Product = new Product(id);
+      this.formFields = await this.modelService.form(product);
     }
-  
-    const product: Product = new Product();
-    product.fromJson(resolvedData.model);
-    console.log(this.formComponent);
-  
-    // TODO: Add autofilled model in backend
-    this.formComponent.form.patchValue({
-      // "id": product.id,
-      "name": product.name,
-      "description": product.description,
-      "stock": product.stock,
-      "purchase_price": product.purchasePrice,
-      "sell_price": product.sellPrice
-    });
-  
-    console.log(this.formComponent);
   }
 
-  override async submitToBackend(object: Product) {
-    return await this.modelService.update(object);
+  override async submitToBackend(product: Product) {
+    return await this.modelService.update(product);
   }
 }

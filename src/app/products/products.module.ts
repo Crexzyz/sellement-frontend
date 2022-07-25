@@ -30,11 +30,7 @@ const routes: Routes = [
     children: [
       { path: '', component: ProductListComponent, pathMatch: 'full' },
       { path: 'create', component: ProductCreateComponent },
-      {
-        path: 'update/:id', component: ProductUpdateComponent, resolve: {
-          data: SingleProductResolver
-        }
-      },
+      { path: 'update/:id', component: ProductUpdateComponent },
       {
         path: 'details/:id', component: ProductDetailsComponent, resolve: {
           data: SingleProductResolver

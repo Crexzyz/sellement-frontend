@@ -30,7 +30,6 @@ export abstract class ModelEditor<Model extends DataModel> implements OnInit, Su
 
   abstract submitToBackend(object: Model): any;
   abstract createModelFromForm(): Model;
-  onFormLoaded(): void {}
 
   runCallback(callbackName: string): void {
     if(callbackName === ModelEditor.SUBMIT_CALLBACK) {
@@ -53,8 +52,8 @@ export abstract class ModelEditor<Model extends DataModel> implements OnInit, Su
   }
   
   async getForm(): Promise<void> {
+    // Get the empty form by default
     this.formFields = await this.modelService.form();
-    this.onFormLoaded();
   }
 
   /**
