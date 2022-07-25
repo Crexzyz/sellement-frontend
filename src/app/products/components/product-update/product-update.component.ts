@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ResolvedModel } from 'src/app/core/interfaces/resolved-model';
@@ -11,34 +11,37 @@ import { ProductFormCommonComponent } from '../product-form-common/product-form-
   templateUrl: '../product-form-common/product-form-common.component.html',
   styleUrls: ['../product-form-common/product-form-common.component.scss']
 })
-export class ProductUpdateComponent extends ProductFormCommonComponent implements OnInit {
+export class ProductUpdateComponent extends ProductFormCommonComponent implements AfterViewInit {
+  override submitText: string = "Update product";
+  override successMessage: string = "Product updated";
+
   constructor(formBuilder: FormBuilder, service: ProductsService, private route: ActivatedRoute) {
     super(formBuilder, service);
   }
-
-  override async ngOnInit(): Promise<void> {
-    super.ngOnInit();
-    this.submitText = "Update product";
-    this.successMessage = "Product updated";
-
+  
+  ngAfterViewInit(): void {
     const resolvedData: ResolvedModel<Product> = this.route.snapshot.data['data'];
     if (resolvedData.error != null) {
       this.notFillableMessage = resolvedData.error;
       this.fillableForm = false;
       return;
     }
-
+  
     const product: Product = new Product();
     product.fromJson(resolvedData.model);
-
-    this.modelForm.patchValue({
-      "id": product.id,
+    console.log(this.formComponent);
+  
+    // TODO: Add autofilled model in backend
+    this.formComponent.form.patchValue({
+      // "id": product.id,
       "name": product.name,
       "description": product.description,
       "stock": product.stock,
       "purchase_price": product.purchasePrice,
       "sell_price": product.sellPrice
     });
+  
+    console.log(this.formComponent);
   }
 
   override async submitToBackend(object: Product) {

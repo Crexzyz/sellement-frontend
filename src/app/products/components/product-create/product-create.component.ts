@@ -9,20 +9,12 @@ import { ProductFormCommonComponent } from '../product-form-common/product-form-
   templateUrl: '../product-form-common/product-form-common.component.html',
   styleUrls: ['../product-form-common/product-form-common.component.scss']
 })
-export class ProductCreateComponent extends ProductFormCommonComponent implements OnInit {
+export class ProductCreateComponent extends ProductFormCommonComponent {
+  override submitText: string = "Create product";
+  override successMessage: string = "Product created";
+
   constructor(formBuilder: FormBuilder, service: ProductsService) {
     super(formBuilder, service);
-  }
-
-  override ngOnInit(): void {
-    super.ngOnInit();
-    this.submitText = "Create product";
-    this.successMessage = "Product created";
-
-    const idField = this.modelForm.get('id');
-    if(idField) {
-      idField.setValue(0);
-    }
   }
 
   override async submitToBackend(object: Product) {
@@ -32,8 +24,9 @@ export class ProductCreateComponent extends ProductFormCommonComponent implement
   override async submit(): Promise<boolean> {
     const validRequest = await super.submit();
 
-    if(validRequest)
-      this.modelForm.reset();
+    if(validRequest) {
+      this.formComponent.form.reset();
+    }
 
     return validRequest;
   }

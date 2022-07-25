@@ -1,6 +1,5 @@
 /**
- * Classes that implements ViewCallback can execute callbacks
- * in the view using the generic logic in the core components
+ * ViewCallback implementers can execute callbacks fired by ActionButtons
  */
 export interface ViewCallback {
     /**

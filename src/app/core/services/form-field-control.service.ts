@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { FormField } from '../models/form-fields/form-field';
+import { BaseFormField } from '../models/form-fields/base-form-field';
 
 @Injectable()
 export class FormFieldControlService {
   constructor() { }
 
-  toFormGroup(fields: FormField<any>[]) {
+  toFormGroup(fields: BaseFormField<any>[]) {
     const group: any = {};
 
     fields.forEach(field => {

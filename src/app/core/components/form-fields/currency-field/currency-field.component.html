@@ -1,0 +1,6 @@
+<mat-form-field class="form-field" appearance="outline" [formGroup]="form">
+    <mat-label for="field.name">{{field.label}}</mat-label>
+    <input matInput [formControlName]="field.name" [id]="field.name" [type]="field.type" [min]="field.min">
+    <span matPrefix>{{field.symbol}} &nbsp;</span>
+    <mat-error *ngIf="!isValid">{{field.label}} is required</mat-error>
+</mat-form-field>

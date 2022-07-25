@@ -1,12 +1,13 @@
 import { TextField } from "./text-field";
 
 export class TextareaField extends TextField {
-    override type = "textarea";
+    public static override readonly TYPE: string = "textarea";
     rows: number;
 
     constructor(options: {
         value?: string;
         name?: string;
+        order?: number;
         hidden?: boolean;
         required?: boolean;
         type?: string;
@@ -16,5 +17,6 @@ export class TextareaField extends TextField {
     } = {}) {
         super(options)
         this.rows = options.rows || 1;
+        this.controlType = TextareaField.TYPE;
     }
 }

@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { lastValueFrom, Observable } from 'rxjs';
+import { lastValueFrom } from 'rxjs';
+import { BaseFormField } from 'src/app/core/models/form-fields/base-form-field';
+import { FormFieldFactory } from 'src/app/core/models/form-fields/form-field-factory';
 import { AbstractRestService } from 'src/app/core/services/abstract-rest.service';
 import { Product } from '../models/product.model'
 
@@ -8,6 +10,10 @@ import { Product } from '../models/product.model'
   providedIn: 'root'
 })
 export class ProductsService extends AbstractRestService<Product> {
+  constructor(httpClient: HttpClient) {
+    super(httpClient, "products");
+  }
+
   async get(object: Product): Promise<Product> {
     let request = this._httpClient.get<Product>(`${this.endpoint}/${object.id}/`);
     let data = await lastValueFrom(request);
@@ -35,7 +41,9 @@ export class ProductsService extends AbstractRestService<Product> {
     return response;
   }
 
-  constructor(httpClient: HttpClient) {
-    super(httpClient, "products");
+  async form(): Promise<BaseFormField<any>[]> {
+    let request = this._httpClient.get<any>(`${this.endpoint}/form/`);
+    let response = await lastValueFrom(request);
+    return FormFieldFactory.createFields(response);
   }
 }

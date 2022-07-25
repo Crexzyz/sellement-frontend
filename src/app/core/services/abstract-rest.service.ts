@@ -22,4 +22,5 @@ export abstract class AbstractRestService<T> implements RestService<T> {
   abstract create(object: T): Promise<T>;
   abstract update(object: T): Promise<T>;
   abstract delete(object: T): Promise<T>;
+  abstract form(): Promise<any>;
 }
