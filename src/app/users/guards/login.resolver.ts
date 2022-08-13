@@ -7,6 +7,9 @@ import {
 import { Observable, of } from 'rxjs';
 import { AuthenticationService } from '../services/authentication.service';
 
+/**
+ * Resolver that redirects the user to the home page if it is already logged in.
+ */
 @Injectable({
   providedIn: 'root'
 })

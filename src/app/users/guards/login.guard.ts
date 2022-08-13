@@ -3,6 +3,9 @@ import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTr
 import { Observable } from 'rxjs';
 import { AuthenticationService } from '../services/authentication.service';
 
+/**
+ * Guard that redirects the user to the login page if it is not authenticated.
+ */
 @Injectable({
   providedIn: 'root'
 })
