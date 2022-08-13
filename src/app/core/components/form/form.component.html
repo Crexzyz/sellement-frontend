@@ -1,11 +1,16 @@
 <form [formGroup]="form">
-    <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="space-between stretch">
-        <ng-container *ngFor="let field of fields" [ngSwitch]="field.controlType">
-            <app-text-field *ngSwitchCase="'text'" [baseField]="field" [form]="form" [hidden]="field.hidden"></app-text-field>
-            <app-textarea-field *ngSwitchCase="'textarea'" [baseField]="field" [form]="form" [hidden]="field.hidden"></app-textarea-field>
-            <app-number-field *ngSwitchCase="'number'" [baseField]="field" [form]="form" [hidden]="field.hidden"></app-number-field>
-            <app-currency-field *ngSwitchCase="'currency'" [baseField]="field" [form]="form" [hidden]="field.hidden"></app-currency-field>
-        </ng-container>
-        <app-button-array class="actions" fxFlex="100%" fxLayout="row" fxLayout.xs="column" fxLayoutGap="3%" [buttons]="buttons"></app-button-array>
+    <!-- Wraps fields and buttons -->
+    <div fxLayoutGap fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="space-between stretch">
+        <!-- Fields flex wrapper -->
+        <div fxLayoutGap.gt-xs="1rem" fxFlex="100" fxLayout="row wrap">
+            <ng-container *ngFor="let field of fields" [ngSwitch]="field.controlType">
+                <app-text-field fxFlex *ngSwitchCase="'text'" [baseField]="field" [form]="form" [hidden]="field.hidden"></app-text-field>
+                <app-textarea-field fxFlex *ngSwitchCase="'textarea'" [baseField]="field" [form]="form" [hidden]="field.hidden"></app-textarea-field>
+                <app-number-field fxFlex *ngSwitchCase="'number'" [baseField]="field" [form]="form" [hidden]="field.hidden"></app-number-field>
+                <app-currency-field fxFlex *ngSwitchCase="'currency'" [baseField]="field" [form]="form" [hidden]="field.hidden"></app-currency-field>
+            </ng-container>
+        </div>
+        <!-- Buttons wrapper -->
+        <app-button-array class="actions" fxFlex="100" fxLayout="row" fxLayout.xs="column" fxLayoutGap="3%" [buttons]="buttons"></app-button-array>
     </div>
 </form>
