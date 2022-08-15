@@ -18,7 +18,8 @@ export class FormComponent implements OnChanges {
   constructor(private controlService: FormFieldControlService) {}
   
   ngOnChanges(changes: SimpleChanges): void {
-    this.fields = changes["fields"].currentValue as BaseFormField<any>[];
+    const fields = changes["fields"].currentValue as BaseFormField<any>[];
+    this.fields = fields.filter(field => !field.hidden);
     this.form = this.controlService.toFormGroup(this.fields as BaseFormField<any>[]);
   }
 }

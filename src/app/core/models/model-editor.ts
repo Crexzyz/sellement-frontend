@@ -13,23 +13,44 @@ import { BaseFormField } from './form-fields/base-form-field';
 export abstract class ModelEditor<Model extends DataModel> implements OnInit, Submitter, ViewCallback {
   private static SUBMIT_CALLBACK: string = "submit";
 
-  @ViewChild(FormComponent) protected formComponent!: FormComponent;
+  @ViewChild(FormComponent)
+  protected formComponent!: FormComponent;
+
+  protected successMessage: string = "Success";
+
+  protected model: Model | null = null;
 
   submitText: string = "Submit";
   cancelText: string = "Cancel";
+
   formFields: BaseFormField<any>[] = [];
   buttons: ActionButton[] = [];
 
   fillableForm: boolean = true;
   notFillableMessage: string = "Error";
 
-  protected successMessage: string = "Success";
 
-  constructor(protected formBuilder: FormBuilder,
-              protected modelService: AbstractRestService<Model>) { }
+  constructor(
+    protected formBuilder: FormBuilder,
+    protected modelService: AbstractRestService<Model>,
+  ) {}
 
-  abstract submitToBackend(object: Model): any;
-  abstract createModelFromForm(): Model;
+  /**
+   * Initializes the model for creating or updating an existing instance.
+   * @returns The initialized model.
+   */
+  abstract initModel(): Model;
+  
+  /**
+   * Creates or updates the component's model with the form's data.
+   */
+  abstract updateModelFromForm(): void;
+
+  /**
+   * Submits input data to the backend through the model's service.
+   * @param model The model data to submit.
+   */
+  abstract submitToBackend(model: Model): any;
 
   runCallback(callbackName: string): void {
     if(callbackName === ModelEditor.SUBMIT_CALLBACK) {
@@ -38,6 +59,7 @@ export abstract class ModelEditor<Model extends DataModel> implements OnInit, Su
   }
 
   ngOnInit(): void {
+    this.model = this.initModel()
     this.getForm()
     let submitButton = new ActionButton()
       .withViewCallback(this, ModelEditor.SUBMIT_CALLBACK)
@@ -61,7 +83,7 @@ export abstract class ModelEditor<Model extends DataModel> implements OnInit, Su
   }
 
   /**
-   * Template method that submits data in a form to a concrete backend
+   * Template method that submits data in a form to a concrete backend.
    */
   async submit(): Promise<boolean> {
     this.formComponent.form.markAllAsTouched();
@@ -70,12 +92,12 @@ export abstract class ModelEditor<Model extends DataModel> implements OnInit, Su
       return false;
     }
     
-    const model: Model = this.createModelFromForm();
+    this.updateModelFromForm();
   
     try {
-      await this.submitToBackend(model);
+      await this.submitToBackend(this.model!);
     } catch (error: any) {
-      // TODO: Remove log and handle error
+      // TODO: Remove log and handle error visually
       console.log(error as HttpErrorResponse); 
       return false;
     }

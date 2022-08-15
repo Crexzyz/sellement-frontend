@@ -1,20 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { ModelEditor } from 'src/app/core/models/model-editor';
 import { Product } from '../../models/product.model';
 import { ProductsService } from '../../services/products.service';
-import { ProductFormCommonComponent } from '../product-form-common/product-form-common.component';
 
 @Component({
   selector: 'app-product-create',
-  templateUrl: '../product-form-common/product-form-common.component.html',
-  styleUrls: ['../product-form-common/product-form-common.component.scss']
+  templateUrl: './product-create.component.html',
 })
-export class ProductCreateComponent extends ProductFormCommonComponent {
+export class ProductCreateComponent extends ModelEditor<Product> {
   override submitText: string = "Create product";
   override successMessage: string = "Product created";
 
   constructor(formBuilder: FormBuilder, service: ProductsService) {
     super(formBuilder, service);
+  }
+  
+  override initModel(): Product {
+    return new Product();
   }
 
   override async submitToBackend(object: Product) {
@@ -29,5 +32,9 @@ export class ProductCreateComponent extends ProductFormCommonComponent {
     }
 
     return validRequest;
+  }
+
+  override updateModelFromForm(): void {
+    this.model!.fromJson(this.formComponent.form.getRawValue())
   }
 }
