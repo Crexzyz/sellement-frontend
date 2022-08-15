@@ -1,9 +1,5 @@
 import { Injectable } from '@angular/core';
-import {
-  Resolve,
-  RouterStateSnapshot,
-  ActivatedRouteSnapshot
-} from '@angular/router';
+import { Resolve, RouterStateSnapshot, ActivatedRouteSnapshot } from '@angular/router';
 import { catchError, from, map, Observable, of } from 'rxjs';
 import { ResolvedModel } from 'src/app/core/interfaces/resolved-model';
 import { Product } from '../models/product.model';
@@ -35,6 +31,7 @@ export class SingleProductResolver implements Resolve<ResolvedModel<Product>> {
     }
 
     const product: Product = new Product(id);
+    // TODO: Return non-raw model
     return from(this.service.get(product)).pipe(
       map((data) => ({ model: data, error: null })),
       catchError((error) => {
