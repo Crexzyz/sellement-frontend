@@ -1,4 +1,4 @@
-import { Directive, OnInit } from '@angular/core';
+import { Directive } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ModelEditor } from 'src/app/core/models/model-editor';
 import { Product } from '../../models/product.model';

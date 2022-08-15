@@ -27,6 +27,7 @@ export class ProductUpdateComponent extends ProductFormCommonComponent {
     // considered as the Angular way of forms
     let productId = this.route.snapshot.paramMap.get("id");
     if (productId !== null) {
+      // The + symbol casts the string to a number.
       let id: number = +productId;
       let product: Product = new Product(id);
       this.formFields = await this.modelService.form(product);

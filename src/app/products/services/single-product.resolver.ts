@@ -9,6 +9,17 @@ import { ResolvedModel } from 'src/app/core/interfaces/resolved-model';
 import { Product } from '../models/product.model';
 import { ProductsService } from './products.service';
 
+/**
+ * Automatically gets a single data row for a model. To use it, add the resolver
+ * to a route in the resolve field. Then, access the data through an `ActivatedRoute`:
+ * 
+ * ```
+ * // In routes
+ * {path: ..., component: ..., resolve: {data: SingleProductResolver}
+ * // In component
+ * rawData = route.snapshot.data["data"];
+ * ```
+ */
 @Injectable({
   providedIn: 'root'
 })

@@ -1,10 +1,10 @@
 /**
- * ViewCallback implementers can execute callbacks fired by ActionButtons
+ * ViewCallback implementers can execute callbacks fired by ActionButtons.
  */
 export interface ViewCallback {
     /**
-     * Runs a callback, commonly a private function
-     * @param callbackName The callback name to run
+     * Runs a callback identified by a name.
+     * @param name The callback's name to run.
      */
-    runCallback(callbackName: string): void;
+    runCallback(name: string): void;
 }

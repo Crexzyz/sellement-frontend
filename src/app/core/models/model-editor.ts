@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { AfterViewInit, Directive, OnChanges, OnInit, SimpleChanges, ViewChild } from "@angular/core";
+import { Directive, OnInit, ViewChild } from "@angular/core";
 import { FormBuilder } from "@angular/forms";
 import { FormComponent } from '../components/form/form.component';
 import { Submitter } from "../interfaces/submitter";
@@ -45,12 +45,16 @@ export abstract class ModelEditor<Model extends DataModel> implements OnInit, Su
       .withDisplayText(this.submitText);
 
     let cancelButton = new ActionButton()
+      // TODO: Hardcoded link
       .withRouterLink(`/products`)
       .withDisplayText(this.cancelText);
 
     this.buttons.push(submitButton, cancelButton);
   }
   
+  /**
+   * Fetches the form's data from the model's service.
+   */
   async getForm(): Promise<void> {
     // Get the empty form by default
     this.formFields = await this.modelService.form();
