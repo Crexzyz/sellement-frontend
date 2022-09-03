@@ -1,4 +1,6 @@
-export abstract class BaseFormField<T> {
+export type FormField = string | number
+
+export abstract class BaseFormField<T extends FormField> {
     public static readonly TYPE: string = "base"
     value: T | undefined;
     name: string;
@@ -28,8 +30,19 @@ export abstract class BaseFormField<T> {
         this.label = options.label || "";
     }
 
+    /**
+     * Returns the value's string representation.
+     */
     abstract get valueString(): string;
 
+    /**
+     * Returns the class' default value.
+     */
+    abstract get defaultValue(): T;
+
+    /**
+     * Returns the value's type as a string.
+     */
     get valueType(): string {
         return typeof this.value;
     }

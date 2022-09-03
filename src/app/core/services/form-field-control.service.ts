@@ -1,38 +1,24 @@
 import { Injectable } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { BaseFormField } from '../models/form-fields/base-form-field';
+import { FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { BaseFormField, FormField } from '../models/form-fields/base-form-field';
 
 @Injectable()
 export class FormFieldControlService {
   constructor() { }
 
-  toFormGroup(fields: BaseFormField<any>[]) {
-    const group: any = {};
+  toFormGroup(fields: BaseFormField<FormField>[]) {
+    const group: {[key: string]: FormControl} = {};
 
     fields.forEach(field => {
-      const defaultValue = this.getDefaultValue(field.valueType);
-      let control: FormControl;
+      let validators: ValidatorFn[] = []
 
       if(field.required) {
-        control = new FormControl(field.value || defaultValue, Validators.required)
-      } else {
-        control = new FormControl(field.value || defaultValue)
+        validators.push(Validators.required)
       }
 
-      group[field.name] = control
+      group[field.name] = new FormControl(field.value || field.defaultValue, validators)
     });
 
     return new FormGroup(group);
-  }
-
-  private getDefaultValue(type: string): any {
-    switch (type) {
-      case "string":
-        return "";
-      case "number":
-        return 0;
-      default:
-        return undefined;
-    }
   }
 }

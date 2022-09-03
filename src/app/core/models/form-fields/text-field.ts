@@ -22,4 +22,8 @@ export class TextField extends BaseFormField<string> {
     get valueString(): string {
         return this.value || "";
     }
+
+    get defaultValue(): string {
+        return "";
+    }
 }

@@ -19,4 +19,8 @@ export class CurrencyField extends NumberField {
         this.symbol = options.symbol || "$";
         this.controlType = CurrencyField.TYPE;
     }
+
+    override get defaultValue(): number {
+        return 0.0; 
+     }
 }

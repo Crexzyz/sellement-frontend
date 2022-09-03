@@ -22,4 +22,8 @@ export class NumberField extends BaseFormField<number> {
     get valueString(): string {
         return this.value?.toString() || "";
     }
+
+    get defaultValue(): number {
+       return 0;
+    }
 }
