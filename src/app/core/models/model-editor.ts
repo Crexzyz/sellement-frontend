@@ -4,7 +4,7 @@ import { FormBuilder } from "@angular/forms";
 import { FormComponent } from '../components/form/form.component';
 import { Submitter } from "../interfaces/submitter";
 import { ViewCallback } from '../interfaces/view-callback';
-import { AbstractRestService } from "../services/abstract-rest.service";
+import { BaseRestService } from "../services/base-rest.service";
 import { ActionButton } from './action-button.model';
 import { DataModel } from "./data-model.model";
 import { BaseFormField } from './form-fields/base-form-field';
@@ -32,7 +32,7 @@ export abstract class ModelEditor<Model extends DataModel> implements OnInit, Su
 
   constructor(
     protected formBuilder: FormBuilder,
-    protected modelService: AbstractRestService<Model>,
+    protected modelService: BaseRestService<Model>,
   ) {}
 
   /**

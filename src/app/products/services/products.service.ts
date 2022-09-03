@@ -3,13 +3,13 @@ import { Injectable } from '@angular/core';
 import { lastValueFrom, Observable } from 'rxjs';
 import { BaseFormField } from 'src/app/core/models/form-fields/base-form-field';
 import { FormFieldFactory } from 'src/app/core/models/form-fields/form-field-factory';
-import { AbstractRestService } from 'src/app/core/services/abstract-rest.service';
+import { BaseRestService } from 'src/app/core/services/base-rest.service';
 import { Product } from '../models/product.model'
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProductsService extends AbstractRestService<Product> {
+export class ProductsService extends BaseRestService<Product> {
   constructor(httpClient: HttpClient) {
     super(httpClient, "products");
   }

@@ -1,9 +1,11 @@
 import { HttpClient } from '@angular/common/http';
-import { lastValueFrom, Observable } from 'rxjs';
+import { lastValueFrom } from 'rxjs';
 import { RestService } from '../interfaces/rest-service'
 
-// TODO: Rename to just RestService
-export abstract class AbstractRestService<T> implements RestService<T> {
+/**
+ * Base service that implements the getAll() function with paging capabilities.
+ */
+export abstract class BaseRestService<T> implements RestService<T> {
   protected base_endpoint: string = "http://localhost:8000";
   protected custom_endpoint: string;
   protected endpoint: string;
@@ -13,6 +15,11 @@ export abstract class AbstractRestService<T> implements RestService<T> {
     this.endpoint = `${this.base_endpoint}/${this.custom_endpoint}`;
   }
 
+  /**
+   * Returns a set of models that correspond to a selected page.
+   * @param page The page to get.
+   * @returns The set of models in the selected page.
+   */
   async getAll(page: number): Promise<any> {
     page += 1;
     const pageArgument = page > 1 ? `/?page=${page}` : '/';
