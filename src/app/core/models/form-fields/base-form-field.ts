@@ -1,6 +1,12 @@
-export type FormField = string | number
+/**
+ * Current accepted types for FormControls.
+ */
+export type FormValue = string | number
 
-export abstract class BaseFormField<T extends FormField> {
+/**
+ * Abstract FormField with attributes that every concrete FormField should have.
+ */
+export abstract class BaseFormField<T extends FormValue> {
     public static readonly TYPE: string = "base"
     value: T | undefined;
     name: string;
