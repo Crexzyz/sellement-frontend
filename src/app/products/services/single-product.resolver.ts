@@ -31,9 +31,11 @@ export class SingleProductResolver implements Resolve<ResolvedModel<Product>> {
     }
 
     const product: Product = new Product(id);
-    // TODO: Return non-raw model
     return from(this.service.get(product)).pipe(
-      map((data) => ({ model: data, error: null })),
+      map((data) => {
+        product.fromJson(data);
+        return { model: product, error: null };
+      }),
       catchError((error) => {
         const message: string = `Error fetching product: ${error.statusText}`;
         return of({ model: null, error: message });

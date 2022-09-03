@@ -2,7 +2,7 @@
     <!-- Wraps fields and buttons -->
     <div fxLayoutGap fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="space-between stretch">
         <!-- Fields flex wrapper -->
-        <div fxLayoutGap.gt-xs="1rem" fxFlex="100" fxLayout="row wrap">
+        <div fxLayoutGap="0px" fxLayoutGap.gt-xs="1rem" fxFlex="100" fxLayout="row wrap">
             <ng-container *ngFor="let field of fields" [ngSwitch]="field.controlType">
                 <app-text-field fxFlex *ngSwitchCase="'text'" [baseField]="field" [form]="form" [hidden]="field.hidden"></app-text-field>
                 <app-textarea-field fxFlex *ngSwitchCase="'textarea'" [baseField]="field" [form]="form" [hidden]="field.hidden"></app-textarea-field>

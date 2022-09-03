@@ -19,16 +19,15 @@ export class ProductUpdateComponent extends ModelEditor<Product> {
   
   override initModel(): Product {
     const data = this.route.snapshot.data["data"]
-    const model = new Product();
     
     if(data.error !== null) {
       this.notFillableMessage = data.error;
       this.fillableForm = false;
-      return model
+      // TODO: Throw an error without creating a product
+      return new Product();
     }
-    
-    model.fromJson(data.model)
-    return model
+
+    return data.model as Product
   }
 
   override async getForm(): Promise<void> {

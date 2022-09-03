@@ -1,5 +1,4 @@
 import { ActivatedRoute } from '@angular/router';
-import { ResolvedModel } from '../../interfaces/resolved-model';
 import { ActionButton } from '../../models/action-button.model';
 import { DataModel } from '../../models/data-model.model';
 
@@ -10,13 +9,14 @@ export abstract class ActionableDetailedModelComponent<Model extends DataModel> 
   buttons: Array<ActionButton> = Array<ActionButton>();
 
   constructor(protected route: ActivatedRoute, public model: Model) {
-    const data: ResolvedModel<Model> = this.route.snapshot.data['data'];
+    const data = this.route.snapshot.data['data'];
     this.error = data.error != null;
+
     if(this.error) {
       this.errorMessage = data.error;
       return;
     }
-    
-    this.model.fromJson(data.model);
+
+    this.model = data.model as Model
   }
 }
