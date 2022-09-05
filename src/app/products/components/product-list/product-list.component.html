@@ -1,26 +1,30 @@
-<mat-spinner *ngIf="loading"></mat-spinner>
-
-<div fxLayout="row wrap"
-     fxLayout.xs="column wrap"
-     fxLayoutAlign="start none"
-     fxLayoutGap="3%">
-    <mat-card *ngFor="let product of dataContainer.results"
-              class="model-card"
-              fxFlex="30%" >
-        <mat-card-title>{{product.name}}</mat-card-title>
-        <mat-card-actions align="end">
-            <button matTooltip="Details" mat-icon-button aria-label="Information" routerLink="details/{{product.id}}">
-                <mat-icon>info</mat-icon>
-            </button>
-        </mat-card-actions>
-    </mat-card>
+<div fxLayout="row" fxLayoutAlign="center center">
+    <mat-spinner *ngIf="loading"></mat-spinner>
 </div>
 
-<mat-paginator #paginator
-                class="model-card"
-                [length]="dataContainer.count" 
-                [pageIndex]="dataContainer.currentPage"
-                [pageSizeOptions]="[10]"
-                (page)="pageChanged($event)" 
-                aria-label="Select page">
-</mat-paginator>
+<ng-container *ngIf="!loading">
+    <div fxLayout="row wrap"
+         fxLayout.xs="column wrap"
+         fxLayoutAlign="start none"
+         fxLayoutGap="3%">
+        <mat-card *ngFor="let product of dataContainer.results"
+                  class="model-card"
+                  fxFlex="30%" >
+            <mat-card-title>{{product.name}}</mat-card-title>
+            <mat-card-actions align="end">
+                <button matTooltip="Details" mat-icon-button aria-label="Information" routerLink="details/{{product.id}}">
+                    <mat-icon>info</mat-icon>
+                </button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+    
+    <mat-paginator #paginator
+                    class="model-card"
+                    [length]="dataContainer.count" 
+                    [pageIndex]="dataContainer.currentPage"
+                    [pageSizeOptions]="[10]"
+                    (page)="pageChanged($event)" 
+                    aria-label="Select page">
+    </mat-paginator>
+</ng-container>
