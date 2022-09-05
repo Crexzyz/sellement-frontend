@@ -20,6 +20,7 @@ import { MatListModule } from '@angular/material/list';
 import { AppRoutingModule } from './app-routing.module';
 import { ProductsModule } from './products/products.module';
 import { HomeModule } from './home/home.module';
+import { CategoriesModule } from './categories/categories.module';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { HomeModule } from './home/home.module';
     UsersModule,
     HomeModule,
     ProductsModule,
+    CategoriesModule,
     MatButtonModule,
     MatIconModule,
     MatToolbarModule,

@@ -7,7 +7,7 @@ import { ProductsService } from '../../services/products.service';
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
-  styleUrls: ['./product-list.component.scss']
+  styleUrls: ["../../../../styles.scss"]
 })
 export class ProductListComponent implements OnInit {
   dataContainer: PaginatedContainer<Product> = new PaginatedContainer();
@@ -31,9 +31,5 @@ export class ProductListComponent implements OnInit {
     let rawData: any = await this._productsService.getAll(this.dataContainer.currentPage);
     this.dataContainer.fromData(rawData, Product);
     this.loading = false;
-  }
-
-  showDetails(id: number): void {
-    console.log(id);
   }
 }

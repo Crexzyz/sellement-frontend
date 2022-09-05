@@ -13,6 +13,11 @@ main { height: 100%; }
     word-break: break-word;
 }
 
+.model-card {
+    @extend .card-flat;
+    margin-bottom: 1rem;
+}
+
 .actions {
     margin-top: 1rem;
 }

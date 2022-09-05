@@ -9,6 +9,8 @@ export abstract class DataModel implements DetailsGettable {
     abstract toJson(): {[key: string]: string};
     
     // Details functions
+    // TODO: This is not so SOLID, split into another function
+    // intended for view-related functions.
     abstract getTitle(): string;
     abstract getDescription(): string
     abstract getValues(): { [key: string]: string; }

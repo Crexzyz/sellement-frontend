@@ -4,19 +4,20 @@
      fxLayout.xs="column wrap"
      fxLayoutAlign="start none"
      fxLayoutGap="3%">
-    <mat-card class="product" *ngFor="let product of dataContainer.results"
+    <mat-card *ngFor="let product of dataContainer.results"
+              class="model-card"
               fxFlex="30%" >
         <mat-card-title>{{product.name}}</mat-card-title>
         <mat-card-actions align="end">
-            <a mat-icon-button aria-label="Information" routerLink="details/{{product.id}}">
+            <button matTooltip="Details" mat-icon-button aria-label="Information" routerLink="details/{{product.id}}">
                 <mat-icon>info</mat-icon>
-            </a>
+            </button>
         </mat-card-actions>
     </mat-card>
 </div>
 
-
 <mat-paginator #paginator
+                class="model-card"
                 [length]="dataContainer.count" 
                 [pageIndex]="dataContainer.currentPage"
                 [pageSizeOptions]="[10]"

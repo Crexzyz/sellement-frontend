@@ -1,0 +1,22 @@
+<mat-spinner *ngIf="loading"></mat-spinner>
+
+<div fxLayout="row wrap"
+     fxLayout.xs="column wrap"
+     fxLayoutAlign="start none"
+     fxLayoutGap="1rem">
+    <mat-card *ngFor="let category of dataContainer.results"
+              class="model-card"
+              fxFlex="30%" >
+        <mat-card-title>{{category.name}}</mat-card-title>
+        <!-- TODO: Add action buttons -->
+    </mat-card>
+</div>
+
+<mat-paginator #paginator
+               class="model-card"
+               [length]="dataContainer.count" 
+               [pageIndex]="dataContainer.currentPage"
+               [pageSizeOptions]="[10]"
+               (page)="pageChanged($event)" 
+               aria-label="Select page">
+</mat-paginator>
