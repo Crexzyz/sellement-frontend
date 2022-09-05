@@ -1,8 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ActionableDetailedModelComponent } from 'src/app/core/components/actionable-detailed-model/actionable-detailed-model.component';
-import { ResolvedModel } from 'src/app/core/interfaces/resolved-model';
 import { ViewCallback } from 'src/app/core/interfaces/view-callback';
 import { ActionButton } from 'src/app/core/models/action-button.model';
 import { Product } from '../../models/product.model';

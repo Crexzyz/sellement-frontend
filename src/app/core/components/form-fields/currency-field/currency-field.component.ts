@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CurrencyField } from 'src/app/core/models/form-fields/currency-field';
 import { FormFieldComponent } from '../form-field/form-field.component';
 

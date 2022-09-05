@@ -8,7 +8,6 @@ import { ButtonArrayComponent } from './components/button-array/button-array.com
 import { RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { FormComponent } from './components/form/form.component';
-import { FormFieldComponent } from './components/form-fields/form-field/form-field.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { TextFieldComponent } from './components/form-fields/text-field/text-field.component';

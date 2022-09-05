@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NumberField } from 'src/app/core/models/form-fields/number-field';
 import { FormFieldComponent } from '../form-field/form-field.component';
 
