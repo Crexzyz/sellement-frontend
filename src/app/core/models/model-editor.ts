@@ -67,8 +67,7 @@ export abstract class ModelEditor<Model extends DataModel> implements OnInit, Su
       .withDisplayText(this.submitText);
 
     let cancelButton = new ActionButton()
-      // TODO: Hardcoded link
-      .withRouterLink(`/products`)
+      .withRouterLink("..")
       .withDisplayText(this.cancelText);
 
     this.buttons.push(submitButton, cancelButton);
@@ -103,6 +102,7 @@ export abstract class ModelEditor<Model extends DataModel> implements OnInit, Su
     }
 
     alert(this.successMessage);
+    this.formComponent.form.reset();
     return true;
   }
 }

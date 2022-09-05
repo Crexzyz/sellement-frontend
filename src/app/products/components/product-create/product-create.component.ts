@@ -24,16 +24,6 @@ export class ProductCreateComponent extends ModelEditor<Product> {
     return await this.modelService.create(object);
   }
 
-  override async submit(): Promise<boolean> {
-    const validRequest = await super.submit();
-
-    if(validRequest) {
-      this.formComponent.form.reset();
-    }
-
-    return validRequest;
-  }
-
   override updateModelFromForm(): void {
     this.model!.fromJson(this.formComponent.form.getRawValue())
   }
